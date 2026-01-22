@@ -1,0 +1,7 @@
+MAS project {
+    infrastructure: Centralised
+    environment: env.EnvironmentExt
+    
+    agents:
+        agent1 agent.asl;
+}
