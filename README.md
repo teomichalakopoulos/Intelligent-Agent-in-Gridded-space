@@ -3,4 +3,4 @@ Design and implementation of an intelligent agent in a grid-based environment us
 
 This build was implemented using Gradle. In this repo gradle is not set up as it should. The setup will be done in the future. However the src files are correct.
 
-The contributors of the project are: Θεόδωρος Μιχαλακόπουλος and Παναγιώτης Γαλάνης.
+The contributors of the project are: Theodoros Michalakopoulos and Panagiotis Galanis.
