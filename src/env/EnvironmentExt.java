@@ -172,12 +172,6 @@ public class EnvironmentExt extends Environment {
         // Randomize positions for the first episode for t,ch,d 
         randomizeEpisodePositions();
 
-        // Start with some objects already moved (for dynamic environment)
-        //if (dynamicObjects) {
-        //    moveObjectRandomly("b");
-       //     moveObjectRandomly("cl");
-        //}
-
         publishPercepts(false);
     }
 
