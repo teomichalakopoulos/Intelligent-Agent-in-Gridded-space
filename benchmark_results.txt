@@ -1,0 +1,9 @@
+﻿Benchmark Results - 2026-01-26 18:29:15
+======================================
+Episodes completed: 3 / 3
+Average Reward:  1.9233
+Min Reward:      1.89
+Max Reward:      1.96
+Std Deviation:   0.0351
+
+Individual rewards saved in: episode_rewards.txt

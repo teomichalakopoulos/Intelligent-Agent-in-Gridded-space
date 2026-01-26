@@ -3,6 +3,8 @@ package env;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import jason.asSyntax.ASSyntax;
 import jason.asSyntax.Literal;
@@ -42,6 +44,10 @@ public class EnvironmentExt extends Environment {
     private int episodesRun = 0;
     private final int episodesToRun = 100;
     private java.util.List<Double> episodeHistory = new java.util.ArrayList<>();
+    
+    // Auto-exit control: set via system property -Dmas.autoExit=true/false
+    // Default is true (for benchmark scripts), set to false to keep window open
+    private boolean autoExitOnComplete = Boolean.parseBoolean(System.getProperty("mas.autoExit", "false"));
     
     // For dynamic environment: track if objects can move
     private boolean dynamicObjects = true;
@@ -323,6 +329,22 @@ public class EnvironmentExt extends Environment {
         if (colored.getOrDefault("t", false) && colored.getOrDefault("ch", false) && doorOpened) {
             // record episode reward
             System.out.println("[ENV] Episode completed with reward: " + episodeReward + ", steps=" + stepCount + ", positions: t@(" + objects.get("t")[0] + "," + objects.get("t")[1] + "), ch@(" + objects.get("ch")[0] + "," + objects.get("ch")[1] + "), d@(" + objects.get("d")[0] + "," + objects.get("d")[1] + ")");
+            
+            // Write reward to file for external script to read (append mode)
+            try (FileWriter fw = new FileWriter("episode_rewards.txt", true)) {
+                fw.write(episodeReward + "\n");
+            } catch (IOException e) {
+                System.err.println("[ENV] Failed to write reward file: " + e.getMessage());
+            }
+            
+            // Exit after episode completes if autoExit is enabled
+            if (autoExitOnComplete) {
+                System.out.println("[ENV] Episode done, exiting (autoExit=true)...");
+                System.exit(0);
+            } else {
+                System.out.println("[ENV] Episode done. Window stays open (autoExit=false).");
+            }
+            
             episodeHistory.add(episodeReward);
             episodesRun++;
 

@@ -1,0 +1,2 @@
+cd "c:\Users\Bukla\Desktop\SXOLH\ergasies\4o etos lol\praktores nig\1h ergasia\ERGASIA1_E22108_E22031 - Test\ERGASIA1_E22108_E22031"
+.\run_100_episodes.ps1
